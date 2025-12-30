@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTAN LABS - Digital Innovation & Development</title>
+    <title>UtanApps - AI-Powered Interface Replacement & Automation</title>
     <style>
         * {
             margin: 0;
@@ -11,165 +11,84 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-cyan: #00ff9f;
-            --secondary-purple: #bd00ff;
-            --dark-bg: #0a0a0f;
-            --darker-bg: #050508;
-            --terminal-green: #00ff9f;
-            --text-gray: #a0a0a0;
-        }
-
         body {
             font-family: 'Courier New', monospace;
-            background: var(--dark-bg);
-            color: #fff;
+            background: #0a0e27;
+            color: #00ff41;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Navigation */
-        nav {
+        .matrix-bg {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 159, 0.3);
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        nav .container {
+        .container {
+            position: relative;
+            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 20px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-cyan);
-            text-decoration: none;
-            letter-spacing: 2px;
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
+            }
         }
 
-        .nav-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.9rem;
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff41;
+            letter-spacing: 5px;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-cyan);
+        .subtitle {
+            font-size: 1.2em;
+            color: #00d4ff;
+            margin-bottom: 20px;
         }
 
-        /* Terminal Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 2rem;
-            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    rgba(0, 255, 159, 0.03) 0px,
-                    transparent 1px,
-                    transparent 2px,
-                    rgba(0, 255, 159, 0.03) 3px
-                );
-            pointer-events: none;
-        }
-
-        .terminal-window {
-            max-width: 900px;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.8);
-            border: 1px solid var(--terminal-green);
-            border-radius: 8px;
-            box-shadow: 0 0 50px rgba(0, 255, 159, 0.3);
-            overflow: hidden;
-            position: relative;
+        .terminal {
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.9em;
         }
 
         .terminal-header {
-            background: rgba(0, 255, 159, 0.1);
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid var(--terminal-green);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: #888;
+            margin-bottom: 10px;
         }
 
-        .terminal-button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--terminal-green);
+        .command {
+            color: #00ff41;
         }
 
-        .terminal-button:nth-child(2) {
-            background: #ffbd00;
-        }
-
-        .terminal-button:nth-child(3) {
-            background: #ff3b30;
-        }
-
-        .terminal-title {
-            margin-left: auto;
-            color: var(--terminal-green);
-            font-size: 0.8rem;
-        }
-
-        .terminal-body {
-            padding: 2rem;
-            min-height: 400px;
-        }
-
-        .terminal-line {
-            margin-bottom: 1rem;
-            color: var(--terminal-green);
-            font-size: 0.95rem;
-        }
-
-        .terminal-prompt {
-            color: var(--secondary-purple);
-        }
-
-        .terminal-command {
-            color: var(--primary-cyan);
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 20px;
-            background: var(--terminal-green);
+        .cursor {
             animation: blink 1s infinite;
-            margin-left: 2px;
         }
 
         @keyframes blink {
@@ -177,64 +96,19 @@
             51%, 100% { opacity: 0; }
         }
 
-        .terminal-output {
-            color: #fff;
-            margin-top: 0.5rem;
-            padding-left: 1rem;
-        }
-
-        .glitch-text {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary-cyan);
-            text-shadow: 0 0 10px var(--primary-cyan);
-            margin: 1rem 0;
-        }
-
-        .subtitle {
-            color: var(--text-gray);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Services Section */
         .services {
-            padding: 6rem 2rem;
-            background: var(--darker-bg);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--primary-cyan);
-            text-shadow: 0 0 20px rgba(0, 255, 159, 0.5);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-        }
-
-        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 30px;
+            margin: 40px 0;
         }
 
         .service-card {
-            background: rgba(10, 10, 15, 0.6);
-            border: 1px solid rgba(0, 255, 159, 0.3);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: all 0.3s;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -242,12 +116,13 @@
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 159, 0.1), transparent);
-            transition: left 0.5s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
         }
 
         .service-card:hover::before {
@@ -255,429 +130,302 @@
         }
 
         .service-card:hover {
-            border-color: var(--primary-cyan);
-            box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
+            border-color: #00d4ff;
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .service-card h3 {
-            color: var(--primary-cyan);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+        .service-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00d4ff;
         }
 
-        .service-card p {
-            color: var(--text-gray);
-            line-height: 1.8;
+        .service-description {
+            color: #00ff41;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
-        .service-card ul {
+        .service-features {
             list-style: none;
-            margin-top: 1rem;
-            color: var(--text-gray);
+            margin-top: 15px;
         }
 
-        .service-card ul li {
-            padding: 0.3rem 0;
-            padding-left: 1.5rem;
+        .service-features li {
+            padding: 5px 0;
+            color: #00ff41;
             position: relative;
+            padding-left: 20px;
         }
 
-        .service-card ul li::before {
-            content: '>';
+        .service-features li::before {
+            content: '▹';
             position: absolute;
             left: 0;
-            color: var(--primary-cyan);
+            color: #00d4ff;
         }
 
-        /* About Section */
-        .about {
-            padding: 6rem 2rem;
-            background: var(--dark-bg);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-cyan);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(0, 255, 159, 0.05);
-            border: 1px solid rgba(0, 255, 159, 0.3);
-            border-radius: 8px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            color: var(--primary-cyan);
-            font-weight: bold;
-        }
-
-        .stat-label {
-            color: var(--text-gray);
-            margin-top: 0.5rem;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            color: var(--primary-cyan);
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            color: var(--text-gray);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
+        .status-badge {
             display: inline-block;
-            padding: 1rem 3rem;
-            background: transparent;
-            border: 2px solid var(--primary-cyan);
-            color: var(--primary-cyan);
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            font-family: 'Courier New', monospace;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .cta-button:hover {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px rgba(0, 255, 159, 0.5);
+        .status-live {
+            background: linear-gradient(135deg, #ff0844 0%, #ff6b9d 100%);
+            color: #fff;
+            border: 1px solid #ff0844;
+            box-shadow: 0 0 15px rgba(255, 8, 68, 0.5);
         }
 
-        /* Footer */
+        .status-active {
+            background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+            color: #000;
+            border: 1px solid #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .about {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .about h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .about p {
+            line-height: 1.8;
+            color: #00ff41;
+            font-size: 1.1em;
+        }
+
         footer {
-            padding: 3rem 2rem;
-            background: var(--darker-bg);
-            border-top: 1px solid rgba(0, 255, 159, 0.3);
             text-align: center;
+            padding: 40px;
+            color: #00ff41;
+            border-top: 2px solid #00ff41;
+            margin-top: 60px;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        .typing-text {
+            display: inline-block;
+            min-width: 300px;
+            text-align: left;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-cyan);
-        }
-
-        .copyright {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            h1 {
+                font-size: 2em;
             }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .glitch-text {
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .terminal-body {
-                padding: 1rem;
-            }
-
-            .services-grid {
+            
+            .services {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">UTAN_LABS</a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <canvas class="matrix-bg"></canvas>
+    
+    <div class="container">
+        <header>
+            <h1>UTANAPPS</h1>
+            <p class="subtitle">AI-Powered Interface Replacement & Automation</p>
+            <div class="terminal">
+                <div class="terminal-header">[root@utanapps ~]#</div>
+                <div class="command">$ ./init_ai_systems.sh</div>
+                <div class="command">$ <span class="typing-text"></span><span class="cursor">_</span></div>
+            </div>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-button"></div>
-                <div class="terminal-button"></div>
-                <div class="terminal-button"></div>
-                <span class="terminal-title">utan@labs:~</span>
+        <section class="services">
+            <div class="service-card">
+                <span class="service-icon">🎬</span>
+                <h3 class="service-title">Autonomous Video Generation</h3>
+                <p class="service-description">
+                    Fully automated video content creation and distribution system powered by advanced AI models.
+                </p>
+                <ul class="service-features">
+                    <li>YouTube automated channels</li>
+                    <li>TikTok content generation</li>
+                    <li>Multi-platform distribution</li>
+                    <li>Real-time content adaptation</li>
+                </ul>
+                <span class="status-badge status-live">STATUS: LIVE</span>
             </div>
-            <div class="terminal-body">
-                <div class="terminal-line">
-                    <span class="terminal-prompt">utan@labs:~$</span>
-                    <span class="terminal-command"> ./init_system.sh</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="terminal-line">> Initializing UTAN LABS...</div>
-                    <div class="terminal-line">> Loading digital solutions...</div>
-                    <div class="terminal-line">> System ready.</div>
-                </div>
-                <div class="glitch-text" id="glitch-title">UTAN LABS</div>
-                <div class="subtitle">Digital Innovation & Development</div>
-                <div class="terminal-line">
-                    <span class="terminal-prompt">utan@labs:~$</span>
-                    <span id="typed-text"></span>
-                    <span class="typing-cursor"></span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">> Services_</h2>
-            <p class="section-subtitle">Cutting-edge digital solutions for modern challenges</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Web Development</h3>
-                    <p>Custom web applications built with modern technologies and best practices.</p>
-                    <ul>
-                        <li>Responsive Design</li>
-                        <li>Progressive Web Apps</li>
-                        <li>E-commerce Solutions</li>
-                        <li>API Integration</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Mobile Development</h3>
-                    <p>Native and cross-platform mobile applications that deliver exceptional user experiences.</p>
-                    <ul>
-                        <li>iOS & Android Apps</li>
-                        <li>React Native</li>
-                        <li>Flutter Development</li>
-                        <li>App Optimization</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Custom Solutions</h3>
-                    <p>Tailored software solutions designed to meet your specific business needs.</p>
-                    <ul>
-                        <li>Business Automation</li>
-                        <li>Data Analytics</li>
-                        <li>System Integration</li>
-                        <li>Cloud Solutions</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Beautiful, intuitive interfaces that enhance user engagement and satisfaction.</p>
-                    <ul>
-                        <li>User Research</li>
-                        <li>Wireframing & Prototyping</li>
-                        <li>Visual Design</li>
-                        <li>Usability Testing</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🛡️</div>
-                    <h3>Security & Performance</h3>
-                    <p>Robust security measures and optimization for peak performance.</p>
-                    <ul>
-                        <li>Security Audits</li>
-                        <li>Performance Optimization</li>
-                        <li>Code Review</li>
-                        <li>Best Practices</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>Consulting</h3>
-                    <p>Expert guidance to help you navigate the digital landscape and achieve your goals.</p>
-                    <ul>
-                        <li>Technology Strategy</li>
-                        <li>Architecture Design</li>
-                        <li>Team Training</li>
-                        <li>Project Management</li>
-                    </ul>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">📡</span>
+                <h3 class="service-title">24/7 AI Broadcasting Station</h3>
+                <p class="service-description">
+                    Continuous autonomous broadcast system operating without human intervention. AI-generated content streamed 24 hours a day.
+                </p>
+                <ul class="service-features">
+                    <li>Autonomous content scheduling</li>
+                    <li>Real-time news generation</li>
+                    <li>Multi-language broadcasting</li>
+                    <li>Adaptive programming</li>
+                </ul>
+                <span class="status-badge status-live">STATUS: LIVE</span>
             </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>> About_UTAN_LABS</h2>
-                    <p>We are a digital innovation lab specializing in cutting-edge web and mobile development solutions. Our team of expert developers and designers work tirelessly to bring your digital vision to life.</p>
-                    <p>With a focus on modern technologies, clean code, and exceptional user experiences, we deliver solutions that not only meet but exceed expectations.</p>
-                    <p>From startups to enterprises, we partner with businesses to create digital products that drive growth and innovation.</p>
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support</div>
-                    </div>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">📈</span>
+                <h3 class="service-title">AI Trading & Market Analysis</h3>
+                <p class="service-description">
+                    Advanced reinforcement learning systems for autonomous trading and real-time market analysis broadcasting.
+                </p>
+                <ul class="service-features">
+                    <li>Stocks & Forex trading</li>
+                    <li>Commodities analysis</li>
+                    <li>Reinforcement learning models</li>
+                    <li>Live market broadcasting</li>
+                </ul>
+                <span class="status-badge status-live">STATUS: LIVE</span>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2>> Ready_to_Start?</h2>
-            <p>Let's build something amazing together</p>
-            <a href="mailto:contact@utanlabs.com" class="cta-button">Get In Touch</a>
-        </div>
-    </section>
+            <div class="service-card">
+                <span class="service-icon">🖥️</span>
+                <h3 class="service-title">Autonomous Server Management</h3>
+                <p class="service-description">
+                    AI-driven infrastructure management system that handles server operations, optimization, and maintenance autonomously.
+                </p>
+                <ul class="service-features">
+                    <li>Automated deployment</li>
+                    <li>Self-healing systems</li>
+                    <li>Performance optimization</li>
+                    <li>Security monitoring</li>
+                </ul>
+                <span class="status-badge status-active">STATUS: ACTIVE</span>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="https://github.com/utanapps" target="_blank">GitHub</a>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 UTAN LABS. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        <section class="about">
+            <h2>Mission_Statement</h2>
+            <p>
+                At UtanApps, we're pioneering the future of autonomous digital infrastructure. Our mission is to eliminate traditional user interfaces and manual processes through advanced AI automation systems. We build intelligent agents that operate continuously, replacing human intervention with sophisticated machine learning models that learn, adapt, and execute tasks autonomously. From content generation to infrastructure management, our AI systems operate 24/7, creating a new paradigm where software doesn't just assist—it takes complete control. We're not building tools for humans to use; we're building AI systems that replace the need for human interaction entirely.
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 UtanApps | Autonomous Systems Operating Continuously</p>
+            <p>All systems operational. Human intervention: 0%</p>
+        </footer>
+    </div>
 
     <script>
+        // Matrix rain effect
+        const canvas = document.querySelector('.matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const columns = Math.floor(canvas.width / 20);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = '15px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+                ctx.fillText(text, i * 20, drops[i] * 20);
+
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
         // Typing effect
         const phrases = [
-            "cat services.txt",
-            "ls -la projects/",
-            "echo 'Innovation in progress...'",
-            "npm run build",
-            "git commit -m 'Ship it!'"
+            'python run_ai_broadcast.py',
+            'node generate_content.js --auto',
+            'docker-compose up trading-bot',
+            'python train_model.py --reinforcement',
+            'npm start autonomous-video-gen',
+            './deploy_ai_systems.sh --production'
         ];
-
+        
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        const typedTextElement = document.getElementById('typed-text');
+        const typingElement = document.querySelector('.typing-text');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
 
         function type() {
             const currentPhrase = phrases[phraseIndex];
             
             if (isDeleting) {
-                typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                typedTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
             }
 
-            let typeSpeed = isDeleting ? 50 : 100;
-
             if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
+                setTimeout(() => isDeleting = true, pauseTime);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
             }
 
-            setTimeout(type, typeSpeed);
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(type, speed);
         }
 
-        // Start typing effect
-        setTimeout(type, 1000);
+        type();
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Service card animations
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
+        }, { threshold: 0.1 });
+
+        serviceCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
         });
     </script>
 </body>
