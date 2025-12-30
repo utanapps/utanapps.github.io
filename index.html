@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTAN_LABS // AI Broadcasting Network</title>
+    <title>UTAN LABS - Digital Innovation & Development</title>
     <style>
         * {
             margin: 0;
@@ -11,159 +11,165 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-cyan: #00ff9f;
+            --secondary-purple: #bd00ff;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --terminal-green: #00ff9f;
+            --text-gray: #a0a0a0;
+        }
+
         body {
             font-family: 'Courier New', monospace;
-            background: #000;
-            color: #0f0;
+            background: var(--dark-bg);
+            color: #fff;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .scanline {
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(0, 255, 0, 0.02) 50%
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
             z-index: 1000;
-            animation: scanline 8s linear infinite;
+            border-bottom: 1px solid rgba(0, 255, 159, 0.3);
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(4px); }
-        }
-
-        .glitch {
-            position: relative;
-            animation: glitch 1s infinite;
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            33% { transform: translate(-2px, 2px); }
-            66% { transform: translate(2px, -2px); }
-        }
-
-        header {
-            padding: 20px;
-            border-bottom: 2px solid #0f0;
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.9);
         }
 
-        .brand {
-            font-size: 24px;
+        .logo {
+            font-size: 1.5rem;
             font-weight: bold;
-            text-shadow: 0 0 10px #0f0;
-        }
-
-        nav {
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            color: #0f0;
+            color: var(--primary-cyan);
             text-decoration: none;
-            padding: 5px 10px;
-            border: 1px solid #0f0;
-            transition: all 0.3s;
+            letter-spacing: 2px;
         }
 
-        nav a:hover {
-            background: #0f0;
-            color: #000;
-            box-shadow: 0 0 20px #0f0;
-        }
-
-        .hero {
-            height: 100vh;
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .matrix-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+        }
+
+        /* Terminal Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            position: relative;
             overflow: hidden;
         }
 
-        .hero-content {
-            z-index: 10;
-            padding: 20px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 255, 159, 0.03) 0px,
+                    transparent 1px,
+                    transparent 2px,
+                    rgba(0, 255, 159, 0.03) 3px
+                );
+            pointer-events: none;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px #0f0;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-
-        .terminal {
-            background: rgba(0, 20, 0, 0.9);
-            border: 2px solid #0f0;
-            padding: 20px;
-            margin: 50px auto;
-            max-width: 800px;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        .terminal-window {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--terminal-green);
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0, 255, 159, 0.3);
+            overflow: hidden;
+            position: relative;
         }
 
         .terminal-header {
+            background: rgba(0, 255, 159, 0.1);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--terminal-green);
             display: flex;
-            gap: 5px;
-            margin-bottom: 15px;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .terminal-button {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #0f0;
+            background: var(--terminal-green);
         }
 
-        .terminal-content {
-            font-size: 14px;
-            line-height: 1.6;
+        .terminal-button:nth-child(2) {
+            background: #ffbd00;
         }
 
-        .prompt {
-            color: #0f0;
+        .terminal-button:nth-child(3) {
+            background: #ff3b30;
         }
 
-        .cursor {
+        .terminal-title {
+            margin-left: auto;
+            color: var(--terminal-green);
+            font-size: 0.8rem;
+        }
+
+        .terminal-body {
+            padding: 2rem;
+            min-height: 400px;
+        }
+
+        .terminal-line {
+            margin-bottom: 1rem;
+            color: var(--terminal-green);
+            font-size: 0.95rem;
+        }
+
+        .terminal-prompt {
+            color: var(--secondary-purple);
+        }
+
+        .terminal-command {
+            color: var(--primary-cyan);
+        }
+
+        .typing-cursor {
             display: inline-block;
             width: 10px;
-            height: 18px;
-            background: #0f0;
+            height: 20px;
+            background: var(--terminal-green);
             animation: blink 1s infinite;
+            margin-left: 2px;
         }
 
         @keyframes blink {
@@ -171,185 +177,508 @@
             51%, 100% { opacity: 0; }
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 50px;
+        .terminal-output {
+            color: #fff;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .glitch-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px var(--primary-cyan);
+            margin: 1rem 0;
+        }
+
+        .subtitle {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .feature-card {
-            border: 2px solid #0f0;
-            padding: 30px;
-            background: rgba(0, 20, 0, 0.5);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
-            background: rgba(0, 40, 0, 0.7);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #0f0;
-        }
-
-        footer {
+        .section-title {
+            font-size: 2.5rem;
             text-align: center;
-            padding: 30px;
-            border-top: 2px solid #0f0;
-            margin-top: 50px;
+            margin-bottom: 1rem;
+            color: var(--primary-cyan);
+            text-shadow: 0 0 20px rgba(0, 255, 159, 0.5);
         }
 
-        .ascii-art {
-            font-size: 10px;
-            line-height: 1;
-            opacity: 0.5;
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
         }
 
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(10, 10, 15, 0.6);
+            border: 1px solid rgba(0, 255, 159, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 159, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+            color: var(--text-gray);
+        }
+
+        .service-card ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card ul li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--primary-cyan);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--dark-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 255, 159, 0.05);
+            border: 1px solid rgba(0, 255, 159, 0.3);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--primary-cyan);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 2px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(0, 255, 159, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(0, 255, 159, 0.3);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-cyan);
+        }
+
+        .copyright {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .glitch-text {
                 font-size: 2rem;
             }
-            
-            .hero p {
+
+            .subtitle {
                 font-size: 1rem;
             }
-            
-            nav {
-                flex-direction: column;
-                gap: 10px;
+
+            .terminal-body {
+                padding: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="scanline"></div>
-    
-    <header>
-        <div class="brand glitch">UTAN_LABS</div>
-        <nav>
-            <a href="#about">ABOUT</a>
-            <a href="#features">FEATURES</a>
-            <a href="#contact">CONTACT</a>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">UTAN_LABS</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="matrix-bg" id="matrixBg"></div>
-        <div class="hero-content">
-            <h1 class="glitch">INITIATING AI BROADCAST PROTOCOL</h1>
-            <p>Underground AI Network // Experimental Technology Division</p>
-            <div class="terminal">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-button"></div>
+                <div class="terminal-button"></div>
+                <div class="terminal-button"></div>
+                <span class="terminal-title">utan@labs:~</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">utan@labs:~$</span>
+                    <span class="terminal-command"> ./init_system.sh</span>
                 </div>
-                <div class="terminal-content">
-                    <span class="prompt">root@utan:~$</span> <span id="typed-text"></span><span class="cursor"></span>
+                <div class="terminal-output">
+                    <div class="terminal-line">> Initializing UTAN LABS...</div>
+                    <div class="terminal-line">> Loading digital solutions...</div>
+                    <div class="terminal-line">> System ready.</div>
+                </div>
+                <div class="glitch-text" id="glitch-title">UTAN LABS</div>
+                <div class="subtitle">Digital Innovation & Development</div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">utan@labs:~$</span>
+                    <span id="typed-text"></span>
+                    <span class="typing-cursor"></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="features" id="features">
-        <div class="feature-card">
-            <h3>▶ AI-POWERED BROADCASTING</h3>
-            <p>Neural network-driven content generation and distribution across multiple platforms simultaneously.</p>
-        </div>
-        <div class="feature-card">
-            <h3>▶ REAL-TIME SYNTHESIS</h3>
-            <p>Advanced algorithms for instant audio/video processing and adaptive content creation.</p>
-        </div>
-        <div class="feature-card">
-            <h3>▶ EXPERIMENTAL PROTOCOLS</h3>
-            <p>Cutting-edge research in AI communication systems and autonomous broadcasting networks.</p>
-        </div>
-        <div class="feature-card">
-            <h3>▶ SECURE TRANSMISSION</h3>
-            <p>End-to-end encrypted channels with blockchain-verified content authenticity.</p>
-        </div>
-        <div class="feature-card">
-            <h3>▶ DISTRIBUTED NODES</h3>
-            <p>Decentralized architecture ensuring 99.9% uptime and global accessibility.</p>
-        </div>
-        <div class="feature-card">
-            <h3>▶ ADAPTIVE LEARNING</h3>
-            <p>Self-improving AI models that evolve with audience engagement patterns.</p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">> Services_</h2>
+            <p class="section-subtitle">Cutting-edge digital solutions for modern challenges</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Custom web applications built with modern technologies and best practices.</p>
+                    <ul>
+                        <li>Responsive Design</li>
+                        <li>Progressive Web Apps</li>
+                        <li>E-commerce Solutions</li>
+                        <li>API Integration</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile applications that deliver exceptional user experiences.</p>
+                    <ul>
+                        <li>iOS & Android Apps</li>
+                        <li>React Native</li>
+                        <li>Flutter Development</li>
+                        <li>App Optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored software solutions designed to meet your specific business needs.</p>
+                    <ul>
+                        <li>Business Automation</li>
+                        <li>Data Analytics</li>
+                        <li>System Integration</li>
+                        <li>Cloud Solutions</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful, intuitive interfaces that enhance user engagement and satisfaction.</p>
+                    <ul>
+                        <li>User Research</li>
+                        <li>Wireframing & Prototyping</li>
+                        <li>Visual Design</li>
+                        <li>Usability Testing</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Security & Performance</h3>
+                    <p>Robust security measures and optimization for peak performance.</p>
+                    <ul>
+                        <li>Security Audits</li>
+                        <li>Performance Optimization</li>
+                        <li>Code Review</li>
+                        <li>Best Practices</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Consulting</h3>
+                    <p>Expert guidance to help you navigate the digital landscape and achieve your goals.</p>
+                    <ul>
+                        <li>Technology Strategy</li>
+                        <li>Architecture Design</li>
+                        <li>Team Training</li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="ascii-art">
-            <pre>
- █    █ ▀▀█▀▀ ██▀▀█ █▀▀▄      █     ██▀▀█ ██▀▀▄ ▄▀▀▀▄
- █    █   █   █▄▄█▀ █  █      █     █▄▄█▀ █▄▄█▀ ▀▄▄▄▀
- ▀▄▄▄▀    ▀   █  ▀█ ▀  ▀      ▀▄▄▄▀ █  ▀█ █  ▀█ ▄▄▄▀▀
-            </pre>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>> About_UTAN_LABS</h2>
+                    <p>We are a digital innovation lab specializing in cutting-edge web and mobile development solutions. Our team of expert developers and designers work tirelessly to bring your digital vision to life.</p>
+                    <p>With a focus on modern technologies, clean code, and exceptional user experiences, we deliver solutions that not only meet but exceed expectations.</p>
+                    <p>From startups to enterprises, we partner with businesses to create digital products that drive growth and innovation.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p>&copy; 2025 UTAN_LABS // ALL RIGHTS RESERVED</p>
-        <p>BROADCAST STATUS: <span style="color: #0f0;">ONLINE</span></p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>> Ready_to_Start?</h2>
+            <p>Let's build something amazing together</p>
+            <a href="mailto:contact@utanlabs.com" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/utanapps" target="_blank">GitHub</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 UTAN LABS. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Matrix background effect
-        const matrixBg = document.getElementById('matrixBg');
-        const chars = '01アイウエオカキクケコサシスセソタチツテト';
-        
-        for (let i = 0; i < 50; i++) {
-            const span = document.createElement('span');
-            span.textContent = chars[Math.floor(Math.random() * chars.length)];
-            span.style.position = 'absolute';
-            span.style.left = Math.random() * 100 + '%';
-            span.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            span.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            span.style.animation = 'fall linear infinite';
-            matrixBg.appendChild(span);
-        }
-
-        // Add CSS for falling animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fall {
-                0% { top: -10%; opacity: 1; }
-                100% { top: 100%; opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
         // Typing effect
-        const text = 'system.initialize() // Welcome to the network';
-        const typedTextElement = document.getElementById('typed-text');
-        let i = 0;
+        const phrases = [
+            "cat services.txt",
+            "ls -la projects/",
+            "echo 'Innovation in progress...'",
+            "npm run build",
+            "git commit -m 'Ship it!'"
+        ];
 
-        function typeWriter() {
-            if (i < text.length) {
-                typedTextElement.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextElement = document.getElementById('typed-text');
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
             }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
         }
 
-        setTimeout(typeWriter, 1000);
+        // Start typing effect
+        setTimeout(type, 1000);
 
-        // Random glitch effect
-        setInterval(() => {
-            const glitchElements = document.querySelectorAll('.glitch');
-            glitchElements.forEach(element => {
-                if (Math.random() > 0.9) {
-                    element.style.textShadow = `${Math.random() * 10}px ${Math.random() * 10}px 10px #0f0`;
-                    setTimeout(() => {
-                        element.style.textShadow = '0 0 10px #0f0';
-                    }, 100);
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-        }, 2000);
+        });
     </script>
 </body>
 </html>
