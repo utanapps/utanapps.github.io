@@ -1,184 +1,355 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UTANA LABS - AI-driven next-generation broadcasting organization">
-    <meta name="keywords" content="AI, broadcasting, automation, news, trading">
-    <title>UTANA_LABS // 次世代AI放送研究機関</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>UTAN_LABS // AI Broadcasting Network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            overflow-x: hidden;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 255, 0, 0.02) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+
+        .glitch {
+            position: relative;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            33% { transform: translate(-2px, 2px); }
+            66% { transform: translate(2px, -2px); }
+        }
+
+        header {
+            padding: 20px;
+            border-bottom: 2px solid #0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #0f0;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #0f0;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 20px #0f0;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #0f0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .terminal {
+            background: rgba(0, 20, 0, 0.9);
+            border: 2px solid #0f0;
+            padding: 20px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0f0;
+        }
+
+        .terminal-content {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .prompt {
+            color: #0f0;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #0f0;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            border: 2px solid #0f0;
+            padding: 30px;
+            background: rgba(0, 20, 0, 0.5);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+            background: rgba(0, 40, 0, 0.7);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 2px solid #0f0;
+            margin-top: 50px;
+        }
+
+        .ascii-art {
+            font-size: 10px;
+            line-height: 1;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Glitch Overlay -->
-    <div class="glitch-overlay"></div>
+    <div class="scanline"></div>
     
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="brand glitch" data-text="UTANA_LABS">UTANA_LABS</div>
-            <div class="nav-links">
-                <button class="lang-btn" data-lang="ja">日本語</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="zh">中文</button>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <div class="brand glitch">UTAN_LABS</div>
+        <nav>
+            <a href="#about">ABOUT</a>
+            <a href="#features">FEATURES</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="scanline"></div>
-        <div class="container">
+        <div class="matrix-bg" id="matrixBg"></div>
+        <div class="hero-content">
+            <h1 class="glitch">INITIATING AI BROADCAST PROTOCOL</h1>
+            <p>Underground AI Network // Experimental Technology Division</p>
             <div class="terminal">
                 <div class="terminal-header">
-                    <span class="terminal-button close"></span>
-                    <span class="terminal-button minimize"></span>
-                    <span class="terminal-button maximize"></span>
-                    <span class="terminal-title">SYSTEM_ACCESS_TERMINAL</span>
+                    <div class="terminal-button"></div>
+                    <div class="terminal-button"></div>
+                    <div class="terminal-button"></div>
                 </div>
-                <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="prompt">root@utana:~$</span> 
-                        <span class="command">access --secure-channel</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="status-ok">[OK]</span> Connection established...
-                    </div>
-                    <div class="terminal-line">
-                        <span class="status-ok">[OK]</span> Authentication verified...
-                    </div>
-                    <div class="terminal-line typing-effect">
-                        <span class="prompt">root@utana:~$</span> 
-                        <span class="typed-text"></span>
-                        <span class="cursor">_</span>
-                    </div>
-                    <h1 class="hero-title" data-i18n="hero.title">次世代AI放送システム</h1>
-                    <p class="hero-subtitle" data-i18n="hero.subtitle">実験的AI技術で未来を創造する謎の研究組織</p>
+                <div class="terminal-content">
+                    <span class="prompt">root@utan:~$</span> <span id="typed-text"></span><span class="cursor"></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title glitch" data-text="// OPERATIONS" data-i18n="services.title">// 運用システム</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="card-header">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">STATUS: ACTIVE</span>
-                    </div>
-                    <h3 data-i18n="services.video.title">動画自動生成システム</h3>
-                    <p data-i18n="services.video.desc">AI駆動の完全自動動画生成プラットフォーム。コンテンツを自動で作成・配信。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">FFmpeg</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="card-header">
-                        <div class="status-indicator live"></div>
-                        <span class="status-text">STATUS: LIVE</span>
-                    </div>
-                    <h3 data-i18n="services.anime.title">リアルタイムAIニュース配信</h3>
-                    <p data-i18n="services.anime.desc">AIアニメキャラによるリアルタイムニュース配信。24/7自動放送中。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">YouTube Live</span>
-                        <span class="tech-tag">GPT-4</span>
-                        <span class="tech-tag">VOICEVOX</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="card-header">
-                        <div class="status-indicator live"></div>
-                        <span class="status-text">STATUS: LIVE</span>
-                    </div>
-                    <h3 data-i18n="services.trading.title">金融市場AI解析配信</h3>
-                    <p data-i18n="services.trading.desc">株式・為替市場をリアルタイム解析。強化学習による予測配信。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">Reinforcement Learning</span>
-                        <span class="tech-tag">Real-time Data</span>
-                        <span class="tech-tag">Analytics</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in classified">
-                    <div class="card-header">
-                        <div class="status-indicator classified"></div>
-                        <span class="status-text">STATUS: CLASSIFIED</span>
-                    </div>
-                    <h3 data-i18n="services.research.title">AI研究開発部門</h3>
-                    <p data-i18n="services.research.desc">極秘プロジェクト進行中。詳細はアクセス制限により非公開。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">???</span>
-                        <span class="tech-tag">REDACTED</span>
-                        <span class="tech-tag">???</span>
-                    </div>
-                </div>
-            </div>
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>▶ AI-POWERED BROADCASTING</h3>
+            <p>Neural network-driven content generation and distribution across multiple platforms simultaneously.</p>
+        </div>
+        <div class="feature-card">
+            <h3>▶ REAL-TIME SYNTHESIS</h3>
+            <p>Advanced algorithms for instant audio/video processing and adaptive content creation.</p>
+        </div>
+        <div class="feature-card">
+            <h3>▶ EXPERIMENTAL PROTOCOLS</h3>
+            <p>Cutting-edge research in AI communication systems and autonomous broadcasting networks.</p>
+        </div>
+        <div class="feature-card">
+            <h3>▶ SECURE TRANSMISSION</h3>
+            <p>End-to-end encrypted channels with blockchain-verified content authenticity.</p>
+        </div>
+        <div class="feature-card">
+            <h3>▶ DISTRIBUTED NODES</h3>
+            <p>Decentralized architecture ensuring 99.9% uptime and global accessibility.</p>
+        </div>
+        <div class="feature-card">
+            <h3>▶ ADAPTIVE LEARNING</h3>
+            <p>Self-improving AI models that evolve with audience engagement patterns.</p>
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-        <div class="container">
-            <h2 class="section-title glitch" data-text="// MISSION" data-i18n="mission.title">// ミッション</h2>
-            <div class="mission-content fade-in">
-                <div class="ascii-logo">
-                    <pre>
- ██╗   ██╗████████╗ █████╗ ███╗   ██╗ █████╗ 
- ██║   ██║╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗
- ██║   ██║   ██║   ███████║██╔██╗ ██║███████║
- ██║   ██║   ██║   ██╔══██║██║╚██╗██║██╔══██║
- ╚██████╔╝   ██║   ██║  ██║██║ ╚████║██║  ██║
-  ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
-                    </pre>
-                </div>
-                <div class="mission-text">
-                    <p data-i18n="mission.text1">我々は表の世界には存在しない。</p>
-                    <p data-i18n="mission.text2">AIの力で新しい放送の形を追求し、情報の自由と自動化を実現する。</p>
-                    <p data-i18n="mission.text3">伝統的な枠組みに縛られず、実験的な技術で未来を切り開く。</p>
-                </div>
-            </div>
+    <footer>
+        <div class="ascii-art">
+            <pre>
+ █    █ ▀▀█▀▀ ██▀▀█ █▀▀▄      █     ██▀▀█ ██▀▀▄ ▄▀▀▀▄
+ █    █   █   █▄▄█▀ █  █      █     █▄▄█▀ █▄▄█▀ ▀▄▄▄▀
+ ▀▄▄▄▀    ▀   █  ▀█ ▀  ▀      ▀▄▄▄▀ █  ▀█ █  ▀█ ▄▄▄▀▀
+            </pre>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title glitch" data-text="// CONTACT" data-i18n="contact.title">// コンタクト</h2>
-            <div class="contact-content fade-in">
-                <p class="contact-warning" data-i18n="contact.warning">⚠ 警告: 非公式チャンネルでの連絡のみ受け付けます</p>
-                <div class="contact-links">
-                    <a href="mailto:contact@utanapps.dev" class="contact-link">
-                        <span class="icon">📧</span>
-                        <span>contact@utanapps.dev</span>
-                    </a>
-                    <a href="https://github.com/utanapps" target="_blank" class="contact-link">
-                        <span class="icon">💻</span>
-                        <span>GitHub: @utanapps</span>
-                    </a>
-                    <a href="#" class="contact-link">
-                        <span class="icon">📺</span>
-                        <span data-i18n="contact.youtube">YouTube配信中</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p data-i18n="footer.text">© 2025 UTANA LABS // すべての活動は実験的です</p>
-            <p class="disclaimer" data-i18n="footer.disclaimer">本組織は架空のものであり、いかなる実在の組織とも関係ありません</p>
-        </div>
+        <p>&copy; 2025 UTAN_LABS // ALL RIGHTS RESERVED</p>
+        <p>BROADCAST STATUS: <span style="color: #0f0;">ONLINE</span></p>
     </footer>
 
-    <script src="js/i18n.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        // Matrix background effect
+        const matrixBg = document.getElementById('matrixBg');
+        const chars = '01アイウエオカキクケコサシスセソタチツテト';
+        
+        for (let i = 0; i < 50; i++) {
+            const span = document.createElement('span');
+            span.textContent = chars[Math.floor(Math.random() * chars.length)];
+            span.style.position = 'absolute';
+            span.style.left = Math.random() * 100 + '%';
+            span.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            span.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            span.style.animation = 'fall linear infinite';
+            matrixBg.appendChild(span);
+        }
+
+        // Add CSS for falling animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { top: -10%; opacity: 1; }
+                100% { top: 100%; opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Typing effect
+        const text = 'system.initialize() // Welcome to the network';
+        const typedTextElement = document.getElementById('typed-text');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                typedTextElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        setTimeout(typeWriter, 1000);
+
+        // Random glitch effect
+        setInterval(() => {
+            const glitchElements = document.querySelectorAll('.glitch');
+            glitchElements.forEach(element => {
+                if (Math.random() > 0.9) {
+                    element.style.textShadow = `${Math.random() * 10}px ${Math.random() * 10}px 10px #0f0`;
+                    setTimeout(() => {
+                        element.style.textShadow = '0 0 10px #0f0';
+                    }, 100);
+                }
+            });
+        }, 2000);
+    </script>
 </body>
 </html>
