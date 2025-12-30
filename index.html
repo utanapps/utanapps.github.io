@@ -1,172 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTANA LABS - Cyberpunk Terminal</title>
+    <meta name="description" content="UTANA LABS - AI-driven next-generation broadcasting organization">
+    <meta name="keywords" content="AI, broadcasting, automation, news, trading">
+    <title>UTANA_LABS // 次世代AI放送研究機関</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="scanline"></div>
-    <div class="noise"></div>
+    <!-- Glitch Overlay -->
+    <div class="glitch-overlay"></div>
     
-    <div class="language-selector">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="tr">TR</button>
-        <button class="lang-btn" data-lang="ja">JA</button>
-    </div>
-
-    <div class="container">
-        <div class="terminal">
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <span class="btn-close"></span>
-                    <span class="btn-minimize"></span>
-                    <span class="btn-maximize"></span>
-                </div>
-                <div class="terminal-title">UTANA_LABS://SYSTEM</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="brand glitch" data-text="UTANA_LABS">UTANA_LABS</div>
+            <div class="nav-links">
+                <button class="lang-btn" data-lang="ja">日本語</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
             </div>
-            <div class="terminal-body">
-                <div class="logo">
-                    <pre class="ascii-art">
-██╗   ██╗████████╗ █████╗ ███╗   ██╗ █████╗ 
-██║   ██║╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗
-██║   ██║   ██║   ███████║██╔██╗ ██║███████║
-██║   ██║   ██║   ██╔══██║██║╚██╗██║██╔══██║
-╚██████╔╝   ██║   ██║  ██║██║ ╚████║██║  ██║
- ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
-                    </pre>
-                    <div class="glitch-text" data-text="LABS">LABS</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="scanline"></div>
+        <div class="container">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span class="terminal-button close"></span>
+                    <span class="terminal-button minimize"></span>
+                    <span class="terminal-button maximize"></span>
+                    <span class="terminal-title">SYSTEM_ACCESS_TERMINAL</span>
                 </div>
-                
-                <div class="boot-sequence">
-                    <div class="boot-line" data-i18n="boot.init">Initializing system...</div>
-                    <div class="boot-line" data-i18n="boot.load">Loading neural networks...</div>
-                    <div class="boot-line" data-i18n="boot.check">Running security checks...</div>
-                    <div class="boot-line" data-i18n="boot.ready">System ready.</div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">root@utana:~$</span> 
+                        <span class="command">access --secure-channel</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="status-ok">[OK]</span> Connection established...
+                    </div>
+                    <div class="terminal-line">
+                        <span class="status-ok">[OK]</span> Authentication verified...
+                    </div>
+                    <div class="terminal-line typing-effect">
+                        <span class="prompt">root@utana:~$</span> 
+                        <span class="typed-text"></span>
+                        <span class="cursor">_</span>
+                    </div>
+                    <h1 class="hero-title" data-i18n="hero.title">次世代AI放送システム</h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">実験的AI技術で未来を創造する謎の研究組織</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="// OPERATIONS" data-i18n="services.title">// 運用システム</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="card-header">
+                        <div class="status-indicator active"></div>
+                        <span class="status-text">STATUS: ACTIVE</span>
+                    </div>
+                    <h3 data-i18n="services.video.title">動画自動生成システム</h3>
+                    <p data-i18n="services.video.desc">AI駆動の完全自動動画生成プラットフォーム。コンテンツを自動で作成・配信。</p>
+                    <div class="card-footer">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">FFmpeg</span>
+                    </div>
                 </div>
 
-                <div class="content">
-                    <div class="typing-text">
-                        <span class="prompt">utana@labs:~$</span>
-                        <span class="command" data-i18n="main.greeting"></span>
+                <div class="service-card fade-in">
+                    <div class="card-header">
+                        <div class="status-indicator live"></div>
+                        <span class="status-text">STATUS: LIVE</span>
                     </div>
-                    
-                    <div class="info-section">
-                        <div class="info-block">
-                            <h2 class="section-title" data-i18n="section.about">// ABOUT</h2>
-                            <p class="typing-text" data-i18n="about.text">
-                                Welcome to UTANA LABS - where innovation meets technology. 
-                                We specialize in cutting-edge mobile applications and AI-driven solutions.
-                            </p>
-                        </div>
-
-                        <div class="info-block">
-                            <h2 class="section-title" data-i18n="section.projects">// PROJECTS</h2>
-                            <div class="project-list">
-                                <div class="project-item" data-status="active">
-                                    <span class="status-indicator"></span>
-                                    <div class="project-info">
-                                        <h3 data-i18n="project.yuk.title">YÜK Mobile App</h3>
-                                        <p data-i18n="project.yuk.desc">Advanced mobile solutions for modern transportation</p>
-                                        <div class="tech-tags">
-                                            <span class="tag">Flutter</span>
-                                            <span class="tag">Firebase</span>
-                                            <span class="tag">AI/ML</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="project-item" data-status="development">
-                                    <span class="status-indicator"></span>
-                                    <div class="project-info">
-                                        <h3 data-i18n="project.ai.title">AI Assistant Framework</h3>
-                                        <p data-i18n="project.ai.desc">Next-gen AI solutions for businesses</p>
-                                        <div class="tech-tags">
-                                            <span class="tag">Python</span>
-                                            <span class="tag">TensorFlow</span>
-                                            <span class="tag">NLP</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="project-item" data-status="planning">
-                                    <span class="status-indicator"></span>
-                                    <div class="project-info">
-                                        <h3 data-i18n="project.blockchain.title">Blockchain Integration</h3>
-                                        <p data-i18n="project.blockchain.desc">Secure and transparent transaction systems</p>
-                                        <div class="tech-tags">
-                                            <span class="tag">Solidity</span>
-                                            <span class="tag">Web3</span>
-                                            <span class="tag">Smart Contracts</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="info-block">
-                            <h2 class="section-title" data-i18n="section.tech">// TECHNOLOGY STACK</h2>
-                            <div class="tech-grid">
-                                <div class="tech-category">
-                                    <h4 data-i18n="tech.mobile">Mobile Development</h4>
-                                    <ul>
-                                        <li>Flutter / Dart</li>
-                                        <li>React Native</li>
-                                        <li>iOS / Android Native</li>
-                                    </ul>
-                                </div>
-                                <div class="tech-category">
-                                    <h4 data-i18n="tech.backend">Backend & Cloud</h4>
-                                    <ul>
-                                        <li>Node.js / Python</li>
-                                        <li>Firebase / AWS</li>
-                                        <li>Docker / Kubernetes</li>
-                                    </ul>
-                                </div>
-                                <div class="tech-category">
-                                    <h4 data-i18n="tech.ai">AI & Machine Learning</h4>
-                                    <ul>
-                                        <li>TensorFlow / PyTorch</li>
-                                        <li>NLP / Computer Vision</li>
-                                        <li>Neural Networks</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="info-block">
-                            <h2 class="section-title" data-i18n="section.contact">// CONTACT</h2>
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <span class="contact-label">EMAIL:</span>
-                                    <a href="mailto:contact@utanalabs.com" class="contact-link glitch-hover" data-text="contact@utanalabs.com">contact@utanalabs.com</a>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="contact-label">GITHUB:</span>
-                                    <a href="https://github.com/utanapps" target="_blank" class="contact-link glitch-hover" data-text="github.com/utanapps">github.com/utanapps</a>
-                                </div>
-                                <div class="contact-item">
-                                    <span class="contact-label">STATUS:</span>
-                                    <span class="status-badge" data-i18n="contact.status">AVAILABLE FOR PROJECTS</span>
-                                </div>
-                            </div>
-                        </div>
+                    <h3 data-i18n="services.anime.title">リアルタイムAIニュース配信</h3>
+                    <p data-i18n="services.anime.desc">AIアニメキャラによるリアルタイムニュース配信。24/7自動放送中。</p>
+                    <div class="card-footer">
+                        <span class="tech-tag">YouTube Live</span>
+                        <span class="tech-tag">GPT-4</span>
+                        <span class="tech-tag">VOICEVOX</span>
                     </div>
-                    
-                    <div class="cursor-line">
-                        <span class="prompt">utana@labs:~$</span>
-                        <span class="cursor">█</span>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="card-header">
+                        <div class="status-indicator live"></div>
+                        <span class="status-text">STATUS: LIVE</span>
+                    </div>
+                    <h3 data-i18n="services.trading.title">金融市場AI解析配信</h3>
+                    <p data-i18n="services.trading.desc">株式・為替市場をリアルタイム解析。強化学習による予測配信。</p>
+                    <div class="card-footer">
+                        <span class="tech-tag">Reinforcement Learning</span>
+                        <span class="tech-tag">Real-time Data</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in classified">
+                    <div class="card-header">
+                        <div class="status-indicator classified"></div>
+                        <span class="status-text">STATUS: CLASSIFIED</span>
+                    </div>
+                    <h3 data-i18n="services.research.title">AI研究開発部門</h3>
+                    <p data-i18n="services.research.desc">極秘プロジェクト進行中。詳細はアクセス制限により非公開。</p>
+                    <div class="card-footer">
+                        <span class="tech-tag">???</span>
+                        <span class="tech-tag">REDACTED</span>
+                        <span class="tech-tag">???</span>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="matrix-bg"></div>
-    </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="// MISSION" data-i18n="mission.title">// ミッション</h2>
+            <div class="mission-content fade-in">
+                <div class="ascii-logo">
+                    <pre>
+ ██╗   ██╗████████╗ █████╗ ███╗   ██╗ █████╗ 
+ ██║   ���█║╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗
+ ██║   ██║   ██║   ███████║██╔██╗ ██║███████║
+ ██║   ██║   ██║   ██╔══██║██║╚██╗██║██╔══██║
+ ╚██████╔╝   ██║   ██║  ██║██║ ╚████║██║  ██║
+  ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
+                    </pre>
+                </div>
+                <div class="mission-text">
+                    <p data-i18n="mission.text1">我々は表の世界には存在しない。</p>
+                    <p data-i18n="mission.text2">AIの力で新しい放送の形を追求し、情報の自由と自動化を実現する。</p>
+                    <p data-i18n="mission.text3">伝統的な枠組みに縛られず、実験的な技術で未来を切り開く。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="// CONTACT" data-i18n="contact.title">// コンタクト</h2>
+            <div class="contact-content fade-in">
+                <p class="contact-warning" data-i18n="contact.warning">⚠ 警告: 非公式チャンネルでの連絡のみ受け付けます</p>
+                <div class="contact-links">
+                    <a href="mailto:contact@utanapps.dev" class="contact-link">
+                        <span class="icon">📧</span>
+                        <span>contact@utanapps.dev</span>
+                    </a>
+                    <a href="https://github.com/utanapps" target="_blank" class="contact-link">
+                        <span class="icon">💻</span>
+                        <span>GitHub: @utanapps</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span class="icon">📺</span>
+                        <span data-i18n="contact.youtube">YouTube配信中</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-i18n="footer.text">© 2025 UTANA LABS // すべての活動は実験的です</p>
+            <p class="disclaimer" data-i18n="footer.disclaimer">本組織は架空のものであり、いかなる実在の組織とも関係ありません</p>
+        </div>
+    </footer>
 
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
