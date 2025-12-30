@@ -3,430 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UtanApps - AI-Powered Interface Replacement & Automation</title>
+    <title>UTANAPPS - Democratizing Information</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Courier New', monospace;
-            background: #0a0e27;
-            color: #00ff41;
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
+        
         .container {
-            position: relative;
-            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-
+        
         header {
             text-align: center;
             padding: 60px 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border: 2px solid #00ff41;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
-            animation: glow 2s ease-in-out infinite alternate;
+            color: white;
         }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-            }
-            to {
-                box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
-            }
-        }
-
+        
         h1 {
             font-size: 3.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #00ff41;
-            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
         }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: #00d4ff;
+        
+        .tagline {
+            font-size: 1.5em;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .about {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .about h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        .mission {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .mission h3 {
+            font-size: 1.8em;
+            color: #764ba2;
             margin-bottom: 20px;
         }
-
-        .terminal {
-            background: #000;
-            border: 2px solid #00ff41;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 20px 0;
-            font-size: 0.9em;
+        
+        .mission p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
         }
-
-        .terminal-header {
-            color: #888;
-            margin-bottom: 10px;
+        
+        .projects {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-
-        .command {
-            color: #00ff41;
+        
+        .projects h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
         }
-
-        .cursor {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .services {
+        
+        .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin: 40px 0;
+            margin-top: 30px;
         }
-
-        .service-card {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border: 2px solid #00ff41;
-            border-radius: 10px;
+        
+        .project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
-            border-color: #00d4ff;
-        }
-
-        .service-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .service-title {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #00d4ff;
-        }
-
-        .service-description {
-            color: #00ff41;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .service-features li {
-            padding: 5px 0;
-            color: #00ff41;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .service-features li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: #00d4ff;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            margin-top: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .status-live {
-            background: linear-gradient(135deg, #ff0844 0%, #ff6b9d 100%);
-            color: #fff;
-            border: 1px solid #ff0844;
-            box-shadow: 0 0 15px rgba(255, 8, 68, 0.5);
-        }
-
-        .status-active {
-            background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
-            color: #000;
-            border: 1px solid #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
-        }
-
-        .about {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border: 2px solid #00ff41;
             border-radius: 10px;
-            padding: 40px;
-            margin: 40px 0;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .about h2 {
-            color: #00d4ff;
-            margin-bottom: 20px;
-            font-size: 2em;
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
-
-        .about p {
-            line-height: 1.8;
-            color: #00ff41;
+        
+        .project-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .project-card p {
             font-size: 1.1em;
+            opacity: 0.95;
         }
-
+        
         footer {
             text-align: center;
-            padding: 40px;
-            color: #00ff41;
-            border-top: 2px solid #00ff41;
-            margin-top: 60px;
+            padding: 40px 20px;
+            color: white;
+            font-size: 1.1em;
         }
-
-        .typing-text {
-            display: inline-block;
-            min-width: 300px;
-            text-align: left;
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
         @media (max-width: 768px) {
             h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
             
-            .services {
-                grid-template-columns: 1fr;
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .about, .projects {
+                padding: 30px 20px;
+            }
+            
+            .about h2, .projects h2 {
+                font-size: 2em;
             }
         }
     </style>
 </head>
 <body>
-    <canvas class="matrix-bg"></canvas>
-    
     <div class="container">
         <header>
             <h1>UTANAPPS</h1>
-            <p class="subtitle">AI-Powered Interface Replacement & Automation</p>
-            <div class="terminal">
-                <div class="terminal-header">[root@utanapps ~]#</div>
-                <div class="command">$ ./init_ai_systems.sh</div>
-                <div class="command">$ <span class="typing-text"></span><span class="cursor">_</span></div>
-            </div>
+            <p class="tagline">Building the Future of Information Freedom</p>
         </header>
-
-        <section class="services">
-            <div class="service-card">
-                <span class="service-icon">🎬</span>
-                <h3 class="service-title">Autonomous Video Generation</h3>
-                <p class="service-description">
-                    Fully automated video content creation and distribution system powered by advanced AI models.
-                </p>
-                <ul class="service-features">
-                    <li>YouTube automated channels</li>
-                    <li>TikTok content generation</li>
-                    <li>Multi-platform distribution</li>
-                    <li>Real-time content adaptation</li>
-                </ul>
-                <span class="status-badge status-live">STATUS: LIVE</span>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">📡</span>
-                <h3 class="service-title">24/7 AI Broadcasting Station</h3>
-                <p class="service-description">
-                    Continuous autonomous broadcast system operating without human intervention. AI-generated content streamed 24 hours a day.
-                </p>
-                <ul class="service-features">
-                    <li>Autonomous content scheduling</li>
-                    <li>Real-time news generation</li>
-                    <li>Multi-language broadcasting</li>
-                    <li>Adaptive programming</li>
-                </ul>
-                <span class="status-badge status-live">STATUS: LIVE</span>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">📈</span>
-                <h3 class="service-title">AI Trading & Market Analysis</h3>
-                <p class="service-description">
-                    Advanced reinforcement learning systems for autonomous trading and real-time market analysis broadcasting.
-                </p>
-                <ul class="service-features">
-                    <li>Stocks & Forex trading</li>
-                    <li>Commodities analysis</li>
-                    <li>Reinforcement learning models</li>
-                    <li>Live market broadcasting</li>
-                </ul>
-                <span class="status-badge status-live">STATUS: LIVE</span>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🖥️</span>
-                <h3 class="service-title">Autonomous Server Management</h3>
-                <p class="service-description">
-                    AI-driven infrastructure management system that handles server operations, optimization, and maintenance autonomously.
-                </p>
-                <ul class="service-features">
-                    <li>Automated deployment</li>
-                    <li>Self-healing systems</li>
-                    <li>Performance optimization</li>
-                    <li>Security monitoring</li>
-                </ul>
-                <span class="status-badge status-active">STATUS: ACTIVE</span>
-            </div>
-        </section>
-
+        
         <section class="about">
-            <h2>Mission_Statement</h2>
-            <p>
-                At UtanApps, we're pioneering the future of autonomous digital infrastructure. Our mission is to eliminate traditional user interfaces and manual processes through advanced AI automation systems. We build intelligent agents that operate continuously, replacing human intervention with sophisticated machine learning models that learn, adapt, and execute tasks autonomously. From content generation to infrastructure management, our AI systems operate 24/7, creating a new paradigm where software doesn't just assist—it takes complete control. We're not building tools for humans to use; we're building AI systems that replace the need for human interaction entirely.
-            </p>
+            <h2>About</h2>
+            <div class="mission">
+                <h3>Mission Statement</h3>
+                <p>
+                    <strong>Democratizing Information.</strong> We believe in the liberation of truth—unfiltered, unprocessed, and uncompromising. In a world saturated with manufactured narratives, we stand for authenticity.
+                </p>
+                <p>
+                    Our mission is to empower every individual to broadcast their voice, to share their reality without intermediaries twisting the message. We're abandoning the old media paradigm—those gatekeepers of information who decide what you should see, hear, and believe.
+                </p>
+                <p>
+                    Instead, we're building new media. Media that serves the people, not the powerful. Media that amplifies truth, not profits. Media that gives everyone the freedom to inform, inspire, and ignite change.
+                </p>
+                <p>
+                    <strong>One person. One vision. Building the future.</strong>
+                </p>
+                <p>
+                    This is the revolution of information freedom. This is UTANAPPS.
+                </p>
+            </div>
         </section>
-
+        
+        <section class="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Coming Soon</h3>
+                    <p>Revolutionary tools for information freedom are being crafted. Stay tuned.</p>
+                </div>
+            </div>
+        </section>
+        
         <footer>
-            <p>&copy; 2025 UtanApps | Autonomous Systems Operating Continuously</p>
-            <p>All systems operational. Human intervention: 0%</p>
+            <p>&copy; 2025 UTANAPPS. Empowering voices. Breaking barriers.</p>
         </footer>
     </div>
-
-    <script>
-        // Matrix rain effect
-        const canvas = document.querySelector('.matrix-bg');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const columns = Math.floor(canvas.width / 20);
-        const drops = Array(columns).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00ff41';
-            ctx.font = '15px monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = String.fromCharCode(0x30A0 + Math.random() * 96);
-                ctx.fillText(text, i * 20, drops[i] * 20);
-
-                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(drawMatrix, 35);
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Typing effect
-        const phrases = [
-            'python run_ai_broadcast.py',
-            'node generate_content.js --auto',
-            'docker-compose up trading-bot',
-            'python train_model.py --reinforcement',
-            'npm start autonomous-video-gen',
-            './deploy_ai_systems.sh --production'
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.querySelector('.typing-text');
-        const typingSpeed = 100;
-        const deletingSpeed = 50;
-        const pauseTime = 2000;
-
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                setTimeout(() => isDeleting = true, pauseTime);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-
-            const speed = isDeleting ? deletingSpeed : typingSpeed;
-            setTimeout(type, speed);
-        }
-
-        type();
-
-        // Service card animations
-        const serviceCards = document.querySelectorAll('.service-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        serviceCards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(50px)';
-            card.style.transition = 'all 0.5s ease';
-            observer.observe(card);
-        });
-    </script>
 </body>
 </html>
