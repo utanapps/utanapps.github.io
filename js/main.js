@@ -1,265 +1,279 @@
-// Main JavaScript for UTANA LABS Terminal
+// ================================================
+// main.js - Main JavaScript for UTANA LABS
+// ================================================
 
-// Matrix Background Effect
-function createMatrixRain() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const matrixBg = document.querySelector('.matrix-bg');
+// ================================================
+// Terminal Typing Effect
+// ================================================
+const typingTexts = [
+    'cat classified_projects.log',
+    'initializing_ai_systems...',
+    'accessing_secure_network...',
+    './broadcast_stream --live',
+    'loading_neural_networks...'
+];
+
+let typingIndex = 0;
+let charIndex = 0;
+let currentText = '';
+let isDeleting = false;
+
+function typeEffect() {
+    const typedTextElement = document.querySelector('.typed-text');
     
-    if (!matrixBg) return;
+    if (!typedTextElement) return;
     
-    matrixBg.appendChild(canvas);
+    const fullText = typingTexts[typingIndex];
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const letters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    
-    for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100;
+    if (isDeleting) {
+        currentText = fullText.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        currentText = fullText.substring(0, charIndex + 1);
+        charIndex++;
     }
     
-    function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#0F0';
-        ctx.font = fontSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = letters[Math.floor(Math.random() * letters.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
+    typedTextElement.textContent = currentText;
+    
+    let typeSpeed = 100;
+    
+    if (isDeleting) {
+        typeSpeed /= 2;
+    }
+    
+    if (!isDeleting && charIndex === fullText.length) {
+        typeSpeed = 2000; // Pause at end
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        typingIndex = (typingIndex + 1) % typingTexts.length;
+        typeSpeed = 500; // Pause before next text
+    }
+    
+    setTimeout(typeEffect, typeSpeed);
+}
+
+// ================================================
+// Smooth Scrolling
+// ================================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
-            drops[i]++;
-        }
-    }
-    
-    const matrixInterval = setInterval(draw, 35);
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-    
-    return matrixInterval;
-}
-
-// Typing Effect for Terminal
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Enhanced Boot Sequence
-function bootSequence() {
-    const bootLines = document.querySelectorAll('.boot-line');
-    const bootTexts = [
-        'Initializing system...',
-        'Loading neural networks...',
-        'Running security checks...',
-        'System ready.'
-    ];
-    
-    bootLines.forEach((line, index) => {
-        setTimeout(() => {
-            const text = line.textContent;
-            line.textContent = '';
-            line.style.opacity = '1';
-            typeWriter(line, text, 30);
-        }, index * 400);
-    });
-}
-
-// Terminal Command Typing Effect
-function initCommandTyping() {
-    const commandElement = document.querySelector('.typing-text .command');
-    if (commandElement) {
-        const text = commandElement.textContent;
-        setTimeout(() => {
-            typeWriter(commandElement, text, 80);
-        }, 2000);
-    }
-}
-
-// Interactive Project Cards
-function initProjectInteractions() {
-    const projectItems = document.querySelectorAll('.project-item');
-    
-    projectItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(10px) scale(1.02)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0) scale(1)';
-        });
-    });
-}
-
-// Random Glitch Effect
-function randomGlitch() {
-    const glitchElements = document.querySelectorAll('.glitch-text');
-    
-    glitchElements.forEach(element => {
-        setInterval(() => {
-            if (Math.random() > 0.95) {
-                element.style.animation = 'none';
-                setTimeout(() => {
-                    element.style.animation = '';
-                }, 100);
-            }
-        }, 2000);
-    });
-}
-
-// System Status Indicators
-function updateSystemStatus() {
-    const statusIndicators = document.querySelectorAll('.status-indicator');
-    
-    statusIndicators.forEach(indicator => {
-        setInterval(() => {
-            indicator.style.opacity = Math.random() > 0.5 ? '1' : '0.5';
-        }, Math.random() * 2000 + 1000);
-    });
-}
-
-// Easter Egg: Konami Code
-function initKonamiCode() {
-    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-    let konamiIndex = 0;
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === konamiCode[konamiIndex]) {
-            konamiIndex++;
-            if (konamiIndex === konamiCode.length) {
-                activateEasterEgg();
-                konamiIndex = 0;
-            }
-        } else {
-            konamiIndex = 0;
         }
     });
-}
+});
 
-function activateEasterEgg() {
-    const terminal = document.querySelector('.terminal');
-    terminal.style.animation = 'rainbow 2s linear infinite';
-    
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    setTimeout(() => {
-        terminal.style.animation = '';
-    }, 5000);
-}
-
-// Console ASCII Art
-function displayConsoleArt() {
-    const art = `
-    ██╗   ██╗████████╗ █████╗ ███╗   ██╗ █████╗ 
-    ██║   ██║╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗
-    ██║   ██║   ██║   ███████║██╔██╗ ██║███████║
-    ██║   ██║   ██║   ██╔══██║██║╚██╗██║██╔══██║
-    ╚██████╔╝   ██║   ██║  ██║██║ ╚████║██║  ██║
-     ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
-                        LABS
-    `;
-    console.log('%c' + art, 'color: #00ff41; font-family: monospace;');
-    console.log('%cWelcome to UTANA LABS Terminal', 'color: #00ff41; font-size: 16px; font-weight: bold;');
-    console.log('%cType "help" for available commands', 'color: #0f0;');
-}
-
-// Terminal Commands (Console Easter Egg)
-const terminalCommands = {
-    help: () => {
-        console.log('%cAvailable commands:', 'color: #00ff41; font-weight: bold;');
-        console.log('%c- about: Learn about UTANA LABS', 'color: #0f0;');
-        console.log('%c- projects: List all projects', 'color: #0f0;');
-        console.log('%c- contact: Get contact information', 'color: #0f0;');
-        console.log('%c- matrix: Toggle matrix rain', 'color: #0f0;');
-        console.log('%c- clear: Clear console', 'color: #0f0;');
-    },
-    about: () => {
-        console.log('%cUTANA LABS', 'color: #00ff41; font-size: 18px; font-weight: bold;');
-        console.log('Innovation meets technology. We build the future.');
-    },
-    projects: () => {
-        console.log('%cActive Projects:', 'color: #00ff41; font-weight: bold;');
-        console.log('1. YÜK Mobile App - Modern transportation solutions');
-        console.log('2. AI Assistant Framework - Next-gen AI solutions');
-        console.log('3. Blockchain Integration - Secure transaction systems');
-    },
-    contact: () => {
-        console.log('%cContact Information:', 'color: #00ff41; font-weight: bold;');
-        console.log('Email: contact@utanalabs.com');
-        console.log('GitHub: github.com/utanapps');
-    },
-    clear: () => {
-        console.clear();
-        displayConsoleArt();
-    }
+// ================================================
+// Intersection Observer for Scroll Animations
+// ================================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
 };
 
-// Expose commands to window
-window.terminal = terminalCommands;
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
 
-// Initialize everything when DOM is loaded
-let matrixInterval;
-
-function init() {
-    displayConsoleArt();
-    matrixInterval = createMatrixRain();
-    bootSequence();
-    initCommandTyping();
-    initProjectInteractions();
-    randomGlitch();
-    updateSystemStatus();
-    initKonamiCode();
+// ================================================
+// Random Glitch Effect
+// ================================================
+function triggerRandomGlitch() {
+    const glitchElements = document.querySelectorAll('.glitch');
     
-    // Add cursor blink effect
-    const cursor = document.querySelector('.cursor');
-    if (cursor) {
-        setInterval(() => {
-            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-        }, 500);
+    if (glitchElements.length > 0) {
+        const randomElement = glitchElements[Math.floor(Math.random() * glitchElements.length)];
+        randomElement.classList.add('glitch-active');
+        
+        setTimeout(() => {
+            randomElement.classList.remove('glitch-active');
+        }, 100);
     }
 }
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
+// ================================================
+// Console Easter Egg
+// ================================================
+function displayConsoleMessage() {
+    const styles = [
+        'color: #00ff41',
+        'font-size: 14px',
+        'font-family: Courier New, monospace',
+        'padding: 10px',
+        'background: #0a0a0a'
+    ].join(';');
+    
+    console.log('%c┌────────────────────────────────────────┐', styles);
+    console.log('%c│  UTANA LABS - ACCESS GRANTED          │', styles);
+    console.log('%c│  System Status: OPERATIONAL           │', styles);
+    console.log('%c│  Security Level: MAXIMUM              │', styles);
+    console.log('%c│  ─────────────────────────────────    │', styles);
+    console.log('%c│  Welcome to the underground...        │', styles);
+    console.log('%c│  Type "help()" for available commands │', styles);
+    console.log('%c└────────────────────────────────────────┘', styles);
+    
+    // Define commands in a namespace
+    window.UTANA = {
+        help: function() {
+            console.log('%c[SYSTEM] Available commands:', 'color: #00ff41');
+            console.log('%c  - UTANA.status()     : Show system status', 'color: #888');
+            console.log('%c  - UTANA.broadcast()  : Show active broadcasts', 'color: #888');
+            console.log('%c  - UTANA.mission()    : Display mission statement', 'color: #888');
+            console.log('%c  - UTANA.classified() : Access classified data', 'color: #888');
+        },
+        
+        status: function() {
+            console.log('%c[OK] All systems operational', 'color: #00ff41');
+            console.log('%c[OK] Video Generation: ACTIVE', 'color: #00ff41');
+            console.log('%c[OK] AI Broadcasting: LIVE', 'color: #00ff41');
+            console.log('%c[OK] Market Analysis: LIVE', 'color: #00ff41');
+            console.log('%c[??] R&D Department: CLASSIFIED', 'color: #ffaa00');
+        },
+        
+        broadcast: function() {
+            console.log('%c[BROADCAST] Active Channels:', 'color: #ff0055');
+            console.log('%c  - AI News: STREAMING 24/7', 'color: #888');
+            console.log('%c  - Market Analysis: LIVE', 'color: #888');
+            console.log('%c  - Total Viewers: CLASSIFIED', 'color: #888');
+        },
+        
+        mission: function() {
+            console.log('%c[MISSION] Core Directives:', 'color: #00ff41');
+            console.log('%c  1. Push the boundaries of AI broadcasting', 'color: #888');
+            console.log('%c  2. Achieve complete automation', 'color: #888');
+            console.log('%c  3. Operate beyond traditional constraints', 'color: #888');
+            console.log('%c  4. Experiment. Innovate. Disrupt.', 'color: #888');
+        },
+        
+        classified: function() {
+            console.log('%c[ACCESS DENIED]', 'color: #ff0055');
+            console.log('%c[ERROR] Insufficient clearance level', 'color: #ff0055');
+            console.log('%c[SYSTEM] This incident has been logged.', 'color: #ffaa00');
+        }
+    };
+    
+    // Also expose help at top level for convenience
+    window.help = window.UTANA.help;
 }
 
-// Handle page visibility
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        if (matrixInterval) clearInterval(matrixInterval);
-    } else {
-        matrixInterval = createMatrixRain();
+// ================================================
+// Network Monitor Effect
+// ================================================
+function createNetworkMonitor() {
+    const messages = [
+        '[NET] Packet received: 192.168.0.1:8080',
+        '[AI] Neural network inference complete',
+        '[SYS] Cache cleared successfully',
+        '[DB] Query executed in 0.003s',
+        '[STREAM] Broadcasting frame #',
+        '[API] Request processed: 200 OK'
+    ];
+    
+    setInterval(() => {
+        if (Math.random() > 0.7) {
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            const frame = message.includes('#') ? message + Math.floor(Math.random() * 100000) : message;
+            console.log(`%c${frame}`, 'color: #00ff41; font-size: 10px');
+        }
+    }, 3000);
+}
+
+// ================================================
+// Initialize Everything
+// ================================================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('[SYSTEM] Initializing UTANA LABS interface...');
+    
+    // Start typing effect
+    setTimeout(typeEffect, 1000);
+    
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Trigger random glitch every 5-10 seconds
+    setInterval(triggerRandomGlitch, 5000 + Math.random() * 5000);
+    
+    // Display console easter egg
+    displayConsoleMessage();
+    
+    // Start network monitor (optional - can be commented out if too noisy)
+    // createNetworkMonitor();
+    
+    // Add hover effect to service cards
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const indicator = card.querySelector('.status-indicator');
+            if (indicator) {
+                indicator.style.transform = 'scale(1.2)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            const indicator = card.querySelector('.status-indicator');
+            if (indicator) {
+                indicator.style.transform = 'scale(1)';
+            }
+        });
+    });
+    
+    console.log('[OK] Interface loaded successfully');
+    console.log('[HINT] Try typing "help()" or "UTANA.help()" in the console...');
+});
+
+// ================================================
+// Add random data corruption effect (rare)
+// ================================================
+setInterval(() => {
+    if (Math.random() > 0.95) { // 5% chance every interval
+        const overlay = document.querySelector('.glitch-overlay');
+        if (overlay) {
+            overlay.style.opacity = '0.1';
+            setTimeout(() => {
+                overlay.style.opacity = '0.02';
+            }, 100);
+        }
+    }
+}, 10000);
+
+// ================================================
+// Konami Code Easter Egg
+// ================================================
+let konamiCode = [];
+const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+document.addEventListener('keydown', (e) => {
+    konamiCode.push(e.key);
+    konamiCode = konamiCode.slice(-10);
+    
+    if (konamiCode.join(',') === konamiSequence.join(',')) {
+        console.log('%c🎉 KONAMI CODE ACTIVATED! 🎉', 'color: #ff0055; font-size: 20px; font-weight: bold');
+        console.log('%c[SYSTEM] Access level upgraded to: MAXIMUM', 'color: #00ff41; font-size: 14px');
+        console.log('%c[SECRET] You have discovered the hidden protocol.', 'color: #00ff41');
+        console.log('%c[DATA] Decrypting classified files...', 'color: #00ff41');
+        
+        setTimeout(() => {
+            console.log('%c[COMPLETE] Welcome to the inner circle, operator.', 'color: #ff0055; font-size: 14px');
+        }, 2000);
+        
+        // Visual effect
+        document.body.style.animation = 'glitch-anim-1 0.3s';
+        setTimeout(() => {
+            document.body.style.animation = '';
+        }, 300);
     }
 });

@@ -1,184 +1,432 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UTANA LABS - AI-driven next-generation broadcasting organization">
-    <meta name="keywords" content="AI, broadcasting, automation, news, trading">
-    <title>UTANA_LABS // 次世代AI放送研究機関</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>UtanApps - AI-Powered Interface Replacement & Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            color: #00ff41;
+            overflow-x: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff41;
+            letter-spacing: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+
+        .terminal {
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .terminal-header {
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .command {
+            color: #00ff41;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
+            border-color: #00d4ff;
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .service-description {
+            color: #00ff41;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .service-features li {
+            padding: 5px 0;
+            color: #00ff41;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-features li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-live {
+            background: linear-gradient(135deg, #ff0844 0%, #ff6b9d 100%);
+            color: #fff;
+            border: 1px solid #ff0844;
+            box-shadow: 0 0 15px rgba(255, 8, 68, 0.5);
+        }
+
+        .status-active {
+            background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+            color: #000;
+            border: 1px solid #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .about {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .about h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .about p {
+            line-height: 1.8;
+            color: #00ff41;
+            font-size: 1.1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #00ff41;
+            border-top: 2px solid #00ff41;
+            margin-top: 60px;
+        }
+
+        .typing-text {
+            display: inline-block;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Glitch Overlay -->
-    <div class="glitch-overlay"></div>
+    <canvas class="matrix-bg"></canvas>
     
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="brand glitch" data-text="UTANA_LABS">UTANA_LABS</div>
-            <div class="nav-links">
-                <button class="lang-btn" data-lang="ja">日本語</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="zh">中文</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="scanline"></div>
-        <div class="container">
+    <div class="container">
+        <header>
+            <h1>UTANAPPS</h1>
+            <p class="subtitle">AI-Powered Interface Replacement & Automation</p>
             <div class="terminal">
-                <div class="terminal-header">
-                    <span class="terminal-button close"></span>
-                    <span class="terminal-button minimize"></span>
-                    <span class="terminal-button maximize"></span>
-                    <span class="terminal-title">SYSTEM_ACCESS_TERMINAL</span>
-                </div>
-                <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="prompt">root@utana:~$</span> 
-                        <span class="command">access --secure-channel</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="status-ok">[OK]</span> Connection established...
-                    </div>
-                    <div class="terminal-line">
-                        <span class="status-ok">[OK]</span> Authentication verified...
-                    </div>
-                    <div class="terminal-line typing-effect">
-                        <span class="prompt">root@utana:~$</span> 
-                        <span class="typed-text"></span>
-                        <span class="cursor">_</span>
-                    </div>
-                    <h1 class="hero-title" data-i18n="hero.title">次世代AI放送システム</h1>
-                    <p class="hero-subtitle" data-i18n="hero.subtitle">実験的AI技術で未来を創造する謎の研究組織</p>
-                </div>
+                <div class="terminal-header">[root@utanapps ~]#</div>
+                <div class="command">$ ./init_ai_systems.sh</div>
+                <div class="command">$ <span class="typing-text"></span><span class="cursor">_</span></div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title glitch" data-text="// OPERATIONS" data-i18n="services.title">// 運用システム</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="card-header">
-                        <div class="status-indicator active"></div>
-                        <span class="status-text">STATUS: ACTIVE</span>
-                    </div>
-                    <h3 data-i18n="services.video.title">動画自動生成システム</h3>
-                    <p data-i18n="services.video.desc">AI駆動の完全自動動画生成プラットフォーム。コンテンツを自動で作成・配信。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">FFmpeg</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="card-header">
-                        <div class="status-indicator live"></div>
-                        <span class="status-text">STATUS: LIVE</span>
-                    </div>
-                    <h3 data-i18n="services.anime.title">リアルタイムAIニュース配信</h3>
-                    <p data-i18n="services.anime.desc">AIアニメキャラによるリアルタイムニュース配信。24/7自動放送中。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">YouTube Live</span>
-                        <span class="tech-tag">GPT-4</span>
-                        <span class="tech-tag">VOICEVOX</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="card-header">
-                        <div class="status-indicator live"></div>
-                        <span class="status-text">STATUS: LIVE</span>
-                    </div>
-                    <h3 data-i18n="services.trading.title">金融市場AI解析配信</h3>
-                    <p data-i18n="services.trading.desc">株式・為替市場をリアルタイム解析。強化学習による予測配信。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">Reinforcement Learning</span>
-                        <span class="tech-tag">Real-time Data</span>
-                        <span class="tech-tag">Analytics</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in classified">
-                    <div class="card-header">
-                        <div class="status-indicator classified"></div>
-                        <span class="status-text">STATUS: CLASSIFIED</span>
-                    </div>
-                    <h3 data-i18n="services.research.title">AI研究開発部門</h3>
-                    <p data-i18n="services.research.desc">極秘プロジェクト進行中。詳細はアクセス制限により非公開。</p>
-                    <div class="card-footer">
-                        <span class="tech-tag">???</span>
-                        <span class="tech-tag">REDACTED</span>
-                        <span class="tech-tag">???</span>
-                    </div>
-                </div>
+        <section class="services">
+            <div class="service-card">
+                <span class="service-icon">🎬</span>
+                <h3 class="service-title">Autonomous Video Generation</h3>
+                <p class="service-description">
+                    Fully automated video content creation and distribution system powered by advanced AI models.
+                </p>
+                <ul class="service-features">
+                    <li>YouTube automated channels</li>
+                    <li>TikTok content generation</li>
+                    <li>Multi-platform distribution</li>
+                    <li>Real-time content adaptation</li>
+                </ul>
+                <span class="status-badge status-live">STATUS: LIVE</span>
             </div>
-        </div>
-    </section>
 
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-        <div class="container">
-            <h2 class="section-title glitch" data-text="// MISSION" data-i18n="mission.title">// ミッション</h2>
-            <div class="mission-content fade-in">
-                <div class="ascii-logo">
-                    <pre>
- ██╗   ██╗████████╗ █████╗ ███╗   ██╗ █████╗ 
- ██║   ���█║╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗
- ██║   ██║   ██║   ███████║██╔██╗ ██║███████║
- ██║   ██║   ██║   ██╔══██║██║╚██╗██║██╔══██║
- ╚██████╔╝   ██║   ██║  ██║██║ ╚████║██║  ██║
-  ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
-                    </pre>
-                </div>
-                <div class="mission-text">
-                    <p data-i18n="mission.text1">我々は表の世界には存在しない。</p>
-                    <p data-i18n="mission.text2">AIの力で新しい放送の形を追求し、情報の自由と自動化を実現する。</p>
-                    <p data-i18n="mission.text3">伝統的な枠組みに縛られず、実験的な技術で未来を切り開く。</p>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">📡</span>
+                <h3 class="service-title">24/7 AI Broadcasting Station</h3>
+                <p class="service-description">
+                    Continuous autonomous broadcast system operating without human intervention. AI-generated content streamed 24 hours a day.
+                </p>
+                <ul class="service-features">
+                    <li>Autonomous content scheduling</li>
+                    <li>Real-time news generation</li>
+                    <li>Multi-language broadcasting</li>
+                    <li>Adaptive programming</li>
+                </ul>
+                <span class="status-badge status-live">STATUS: LIVE</span>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title glitch" data-text="// CONTACT" data-i18n="contact.title">// コンタクト</h2>
-            <div class="contact-content fade-in">
-                <p class="contact-warning" data-i18n="contact.warning">⚠ 警告: 非公式チャンネルでの連絡のみ受け付けます</p>
-                <div class="contact-links">
-                    <a href="mailto:contact@utanapps.dev" class="contact-link">
-                        <span class="icon">📧</span>
-                        <span>contact@utanapps.dev</span>
-                    </a>
-                    <a href="https://github.com/utanapps" target="_blank" class="contact-link">
-                        <span class="icon">💻</span>
-                        <span>GitHub: @utanapps</span>
-                    </a>
-                    <a href="#" class="contact-link">
-                        <span class="icon">📺</span>
-                        <span data-i18n="contact.youtube">YouTube配信中</span>
-                    </a>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">📈</span>
+                <h3 class="service-title">AI Trading & Market Analysis</h3>
+                <p class="service-description">
+                    Advanced reinforcement learning systems for autonomous trading and real-time market analysis broadcasting.
+                </p>
+                <ul class="service-features">
+                    <li>Stocks & Forex trading</li>
+                    <li>Commodities analysis</li>
+                    <li>Reinforcement learning models</li>
+                    <li>Live market broadcasting</li>
+                </ul>
+                <span class="status-badge status-live">STATUS: LIVE</span>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p data-i18n="footer.text">© 2025 UTANA LABS // すべての活動は実験的です</p>
-            <p class="disclaimer" data-i18n="footer.disclaimer">本組織は架空のものであり、いかなる実在の組織とも関係ありません</p>
-        </div>
-    </footer>
+            <div class="service-card">
+                <span class="service-icon">🖥️</span>
+                <h3 class="service-title">Autonomous Server Management</h3>
+                <p class="service-description">
+                    AI-driven infrastructure management system that handles server operations, optimization, and maintenance autonomously.
+                </p>
+                <ul class="service-features">
+                    <li>Automated deployment</li>
+                    <li>Self-healing systems</li>
+                    <li>Performance optimization</li>
+                    <li>Security monitoring</li>
+                </ul>
+                <span class="status-badge status-active">STATUS: ACTIVE</span>
+            </div>
+        </section>
 
-    <script src="js/i18n.js"></script>
-    <script src="js/main.js"></script>
+        <section class="about">
+            <h2>Mission_Statement</h2>
+            <p>
+                At UtanApps, we're pioneering the future of autonomous digital infrastructure. Our mission is to eliminate traditional user interfaces and manual processes through advanced AI automation systems. We build intelligent agents that operate continuously, replacing human intervention with sophisticated machine learning models that learn, adapt, and execute tasks autonomously. From content generation to infrastructure management, our AI systems operate 24/7, creating a new paradigm where software doesn't just assist—it takes complete control. We're not building tools for humans to use; we're building AI systems that replace the need for human interaction entirely.
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 UtanApps | Autonomous Systems Operating Continuously</p>
+            <p>All systems operational. Human intervention: 0%</p>
+        </footer>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const canvas = document.querySelector('.matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const columns = Math.floor(canvas.width / 20);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = '15px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+                ctx.fillText(text, i * 20, drops[i] * 20);
+
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Typing effect
+        const phrases = [
+            'python run_ai_broadcast.py',
+            'node generate_content.js --auto',
+            'docker-compose up trading-bot',
+            'python train_model.py --reinforcement',
+            'npm start autonomous-video-gen',
+            './deploy_ai_systems.sh --production'
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.querySelector('.typing-text');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                setTimeout(() => isDeleting = true, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(type, speed);
+        }
+
+        type();
+
+        // Service card animations
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        serviceCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
