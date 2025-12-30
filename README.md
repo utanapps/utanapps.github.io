@@ -65,11 +65,11 @@ utanapps.github.io/
 ## 🕹️ Easter Eggs
 
 Open the browser console and try:
-- `help` - Show available commands
-- `status()` - System status
-- `broadcast()` - Active broadcasts
-- `mission()` - Mission statement
-- `classified()` - Try to access classified data
+- `help()` or `UTANA.help()` - Show available commands
+- `UTANA.status()` - System status
+- `UTANA.broadcast()` - Active broadcasts
+- `UTANA.mission()` - Mission statement
+- `UTANA.classified()` - Try to access classified data
 - Konami Code: ↑↑↓↓←→←→BA
 
 ## 📝 License

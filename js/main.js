@@ -96,11 +96,11 @@ function triggerRandomGlitch() {
     
     if (glitchElements.length > 0) {
         const randomElement = glitchElements[Math.floor(Math.random() * glitchElements.length)];
-        randomElement.style.animation = 'none';
+        randomElement.classList.add('glitch-active');
         
         setTimeout(() => {
-            randomElement.style.animation = '';
-        }, 10);
+            randomElement.classList.remove('glitch-active');
+        }, 100);
     }
 }
 
@@ -122,46 +122,51 @@ function displayConsoleMessage() {
     console.log('%c│  Security Level: MAXIMUM              │', styles);
     console.log('%c│  ─────────────────────────────────    │', styles);
     console.log('%c│  Welcome to the underground...        │', styles);
-    console.log('%c│  Type "help" for available commands   │', styles);
+    console.log('%c│  Type "help()" for available commands │', styles);
     console.log('%c└────────────────────────────────────────┘', styles);
     
-    // Define help command
-    window.help = function() {
-        console.log('%c[SYSTEM] Available commands:', 'color: #00ff41');
-        console.log('%c  - status()     : Show system status', 'color: #888');
-        console.log('%c  - broadcast()  : Show active broadcasts', 'color: #888');
-        console.log('%c  - mission()    : Display mission statement', 'color: #888');
-        console.log('%c  - classified() : Access classified data', 'color: #888');
+    // Define commands in a namespace
+    window.UTANA = {
+        help: function() {
+            console.log('%c[SYSTEM] Available commands:', 'color: #00ff41');
+            console.log('%c  - UTANA.status()     : Show system status', 'color: #888');
+            console.log('%c  - UTANA.broadcast()  : Show active broadcasts', 'color: #888');
+            console.log('%c  - UTANA.mission()    : Display mission statement', 'color: #888');
+            console.log('%c  - UTANA.classified() : Access classified data', 'color: #888');
+        },
+        
+        status: function() {
+            console.log('%c[OK] All systems operational', 'color: #00ff41');
+            console.log('%c[OK] Video Generation: ACTIVE', 'color: #00ff41');
+            console.log('%c[OK] AI Broadcasting: LIVE', 'color: #00ff41');
+            console.log('%c[OK] Market Analysis: LIVE', 'color: #00ff41');
+            console.log('%c[??] R&D Department: CLASSIFIED', 'color: #ffaa00');
+        },
+        
+        broadcast: function() {
+            console.log('%c[BROADCAST] Active Channels:', 'color: #ff0055');
+            console.log('%c  - AI News: STREAMING 24/7', 'color: #888');
+            console.log('%c  - Market Analysis: LIVE', 'color: #888');
+            console.log('%c  - Total Viewers: CLASSIFIED', 'color: #888');
+        },
+        
+        mission: function() {
+            console.log('%c[MISSION] Core Directives:', 'color: #00ff41');
+            console.log('%c  1. Push the boundaries of AI broadcasting', 'color: #888');
+            console.log('%c  2. Achieve complete automation', 'color: #888');
+            console.log('%c  3. Operate beyond traditional constraints', 'color: #888');
+            console.log('%c  4. Experiment. Innovate. Disrupt.', 'color: #888');
+        },
+        
+        classified: function() {
+            console.log('%c[ACCESS DENIED]', 'color: #ff0055');
+            console.log('%c[ERROR] Insufficient clearance level', 'color: #ff0055');
+            console.log('%c[SYSTEM] This incident has been logged.', 'color: #ffaa00');
+        }
     };
     
-    window.status = function() {
-        console.log('%c[OK] All systems operational', 'color: #00ff41');
-        console.log('%c[OK] Video Generation: ACTIVE', 'color: #00ff41');
-        console.log('%c[OK] AI Broadcasting: LIVE', 'color: #00ff41');
-        console.log('%c[OK] Market Analysis: LIVE', 'color: #00ff41');
-        console.log('%c[??] R&D Department: CLASSIFIED', 'color: #ffaa00');
-    };
-    
-    window.broadcast = function() {
-        console.log('%c[BROADCAST] Active Channels:', 'color: #ff0055');
-        console.log('%c  - AI News: STREAMING 24/7', 'color: #888');
-        console.log('%c  - Market Analysis: LIVE', 'color: #888');
-        console.log('%c  - Total Viewers: CLASSIFIED', 'color: #888');
-    };
-    
-    window.mission = function() {
-        console.log('%c[MISSION] Core Directives:', 'color: #00ff41');
-        console.log('%c  1. Push the boundaries of AI broadcasting', 'color: #888');
-        console.log('%c  2. Achieve complete automation', 'color: #888');
-        console.log('%c  3. Operate beyond traditional constraints', 'color: #888');
-        console.log('%c  4. Experiment. Innovate. Disrupt.', 'color: #888');
-    };
-    
-    window.classified = function() {
-        console.log('%c[ACCESS DENIED]', 'color: #ff0055');
-        console.log('%c[ERROR] Insufficient clearance level', 'color: #ff0055');
-        console.log('%c[SYSTEM] This incident has been logged.', 'color: #ffaa00');
-    };
+    // Also expose help at top level for convenience
+    window.help = window.UTANA.help;
 }
 
 // ================================================
@@ -227,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     console.log('[OK] Interface loaded successfully');
-    console.log('[HINT] Try typing "help" in the console...');
+    console.log('[HINT] Try typing "help()" or "UTANA.help()" in the console...');
 });
 
 // ================================================

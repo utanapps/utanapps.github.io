@@ -164,6 +164,11 @@ body {
     100% { clip: rect(54px, 9999px, 11px, 0); }
 }
 
+.glitch-active::before,
+.glitch-active::after {
+    animation: glitch-anim-1 0.3s, glitch-anim-2 0.3s;
+}
+
 /* ================================================
    Hero Section
    ================================================ */
