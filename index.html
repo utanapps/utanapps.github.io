@@ -3,230 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTANAPPS - Democratizing Information</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            color: white;
-        }
-        
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease;
-        }
-        
-        .tagline {
-            font-size: 1.5em;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease;
-        }
-        
-        .about {
-            background: white;
-            border-radius: 15px;
-            padding: 50px;
-            margin: 40px 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            animation: fadeIn 1.5s ease;
-        }
-        
-        .about h2 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
-        
-        .mission {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 30px;
-            border-radius: 10px;
-            margin: 30px 0;
-            border-left: 5px solid #667eea;
-        }
-        
-        .mission h3 {
-            font-size: 1.8em;
-            color: #764ba2;
-            margin-bottom: 20px;
-        }
-        
-        .mission p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 15px;
-        }
-        
-        .projects {
-            background: white;
-            border-radius: 15px;
-            padding: 50px;
-            margin: 40px 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-        
-        .projects h2 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
-        
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .project-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
-            border-radius: 10px;
-            color: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-        
-        .project-card h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-        
-        .project-card p {
-            font-size: 1.1em;
-            opacity: 0.95;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-            font-size: 1.1em;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            
-            .tagline {
-                font-size: 1.2em;
-            }
-            
-            .about, .projects {
-                padding: 30px 20px;
-            }
-            
-            .about h2, .projects h2 {
-                font-size: 2em;
-            }
-        }
-    </style>
+    <title>UTANA LABS - Cyberpunk Terminal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="scanline"></div>
+    <div class="noise"></div>
+    
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+    </div>
+
     <div class="container">
-        <header>
-            <h1>UTANAPPS</h1>
-            <p class="tagline">Building the Future of Information Freedom</p>
-        </header>
-        
-        <section class="about">
-            <h2>About</h2>
-            <div class="mission">
-                <h3>Mission Statement</h3>
-                <p>
-                    <strong>Democratizing Information.</strong> We believe in the liberation of truth—unfiltered, unprocessed, and uncompromising. In a world saturated with manufactured narratives, we stand for authenticity.
-                </p>
-                <p>
-                    Our mission is to empower every individual to broadcast their voice, to share their reality without intermediaries twisting the message. We're abandoning the old media paradigm—those gatekeepers of information who decide what you should see, hear, and believe.
-                </p>
-                <p>
-                    Instead, we're building new media. Media that serves the people, not the powerful. Media that amplifies truth, not profits. Media that gives everyone the freedom to inform, inspire, and ignite change.
-                </p>
-                <p>
-                    <strong>One person. One vision. Building the future.</strong>
-                </p>
-                <p>
-                    This is the revolution of information freedom. This is UTANAPPS.
-                </p>
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">UTANA_LABS://SYSTEM</div>
             </div>
-        </section>
-        
-        <section class="projects">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Coming Soon</h3>
-                    <p>Revolutionary tools for information freedom are being crafted. Stay tuned.</p>
+            <div class="terminal-body">
+                <div class="logo">
+                    <pre class="ascii-art">
+██╗   ██╗████████╗ █████╗ ███╗   ██╗ █████╗ 
+██║   ██║╚══██╔══╝██╔══██╗████╗  ██║██╔══██╗
+██║   ██║   ██║   ███████║██╔██╗ ██║███████║
+██║   ██║   ██║   ██╔══██║██║╚██╗██║██╔══██║
+╚██████╔╝   ██║   ██║  ██║██║ ╚████║██║  ██║
+ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
+                    </pre>
+                    <div class="glitch-text" data-text="LABS">LABS</div>
+                </div>
+                
+                <div class="boot-sequence">
+                    <div class="boot-line" data-i18n="boot.init">Initializing system...</div>
+                    <div class="boot-line" data-i18n="boot.load">Loading neural networks...</div>
+                    <div class="boot-line" data-i18n="boot.check">Running security checks...</div>
+                    <div class="boot-line" data-i18n="boot.ready">System ready.</div>
+                </div>
+
+                <div class="content">
+                    <div class="typing-text">
+                        <span class="prompt">utana@labs:~$</span>
+                        <span class="command" data-i18n="main.greeting"></span>
+                    </div>
+                    
+                    <div class="info-section">
+                        <div class="info-block">
+                            <h2 class="section-title" data-i18n="section.about">// ABOUT</h2>
+                            <p class="typing-text" data-i18n="about.text">
+                                Welcome to UTANA LABS - where innovation meets technology. 
+                                We specialize in cutting-edge mobile applications and AI-driven solutions.
+                            </p>
+                        </div>
+
+                        <div class="info-block">
+                            <h2 class="section-title" data-i18n="section.projects">// PROJECTS</h2>
+                            <div class="project-list">
+                                <div class="project-item" data-status="active">
+                                    <span class="status-indicator"></span>
+                                    <div class="project-info">
+                                        <h3 data-i18n="project.yuk.title">YÜK Mobile App</h3>
+                                        <p data-i18n="project.yuk.desc">Advanced mobile solutions for modern transportation</p>
+                                        <div class="tech-tags">
+                                            <span class="tag">Flutter</span>
+                                            <span class="tag">Firebase</span>
+                                            <span class="tag">AI/ML</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-item" data-status="development">
+                                    <span class="status-indicator"></span>
+                                    <div class="project-info">
+                                        <h3 data-i18n="project.ai.title">AI Assistant Framework</h3>
+                                        <p data-i18n="project.ai.desc">Next-gen AI solutions for businesses</p>
+                                        <div class="tech-tags">
+                                            <span class="tag">Python</span>
+                                            <span class="tag">TensorFlow</span>
+                                            <span class="tag">NLP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-item" data-status="planning">
+                                    <span class="status-indicator"></span>
+                                    <div class="project-info">
+                                        <h3 data-i18n="project.blockchain.title">Blockchain Integration</h3>
+                                        <p data-i18n="project.blockchain.desc">Secure and transparent transaction systems</p>
+                                        <div class="tech-tags">
+                                            <span class="tag">Solidity</span>
+                                            <span class="tag">Web3</span>
+                                            <span class="tag">Smart Contracts</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <h2 class="section-title" data-i18n="section.tech">// TECHNOLOGY STACK</h2>
+                            <div class="tech-grid">
+                                <div class="tech-category">
+                                    <h4 data-i18n="tech.mobile">Mobile Development</h4>
+                                    <ul>
+                                        <li>Flutter / Dart</li>
+                                        <li>React Native</li>
+                                        <li>iOS / Android Native</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-category">
+                                    <h4 data-i18n="tech.backend">Backend & Cloud</h4>
+                                    <ul>
+                                        <li>Node.js / Python</li>
+                                        <li>Firebase / AWS</li>
+                                        <li>Docker / Kubernetes</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-category">
+                                    <h4 data-i18n="tech.ai">AI & Machine Learning</h4>
+                                    <ul>
+                                        <li>TensorFlow / PyTorch</li>
+                                        <li>NLP / Computer Vision</li>
+                                        <li>Neural Networks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <h2 class="section-title" data-i18n="section.contact">// CONTACT</h2>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-label">EMAIL:</span>
+                                    <a href="mailto:contact@utanalabs.com" class="contact-link glitch-hover" data-text="contact@utanalabs.com">contact@utanalabs.com</a>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-label">GITHUB:</span>
+                                    <a href="https://github.com/utanapps" target="_blank" class="contact-link glitch-hover" data-text="github.com/utanapps">github.com/utanapps</a>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-label">STATUS:</span>
+                                    <span class="status-badge" data-i18n="contact.status">AVAILABLE FOR PROJECTS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cursor-line">
+                        <span class="prompt">utana@labs:~$</span>
+                        <span class="cursor">█</span>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
         
-        <footer>
-            <p>&copy; 2025 UTANAPPS. Empowering voices. Breaking barriers.</p>
-        </footer>
+        <div class="matrix-bg"></div>
     </div>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
